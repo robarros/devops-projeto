@@ -16,7 +16,7 @@ node('devops') {
   stage('Checkout') {
     echo 'Checkout do repositorio do GitLab'
     checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://gitlab.com/robarros/devops-projeto.git']]])
-    IMAGE_VERSION = sh returnStdout: true, script: 'sh get-tag.sh'
+    IMAGE_VERSION = sh returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1`"
     IMAGE_VERSION = IMAGE_VERSION.trim()
     sh "echo ${IMAGE_NAME}:${IMAGE_VERSION}"
     }
