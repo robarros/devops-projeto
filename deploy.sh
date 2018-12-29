@@ -1,3 +1,1 @@
-# sed -i "s/IMAGE1/${DOCKERHUB_USER}\/${IMAGE_NAME}:${IMAGE_VERSION}/g" Deployment.yaml
-IMAGE_FULL="$IMAGE_USER$IMAGE_NAME$IMAGE_VERSION"
 sed -i.bkp "s/IMAGE1/${IMAGE_FULL}/" Deployment.yaml'
