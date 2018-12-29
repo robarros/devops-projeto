@@ -2,7 +2,8 @@ podTemplate(
     label: 'devops', 
     cloud: 'minikube',
     containers: [
-        containerTemplate(name: 'docker', image: 'docker:dind', args: 'cat', command: '/bin/sh -c', ttyEnabled: true)],
+        containerTemplate(name: 'docker', image: 'docker:dind', args: 'cat', command: '/bin/sh -c', ttyEnabled: true),
+        containerTemplate(name: 'k8s-kubectl', image: 'lachlanevenson/k8s-kubectl', args: 'cat', command: '/bin/sh -c', ttyEnabled: true)],
         volumes: [hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')]
 )
 
@@ -28,6 +29,15 @@ node('devops') {
       sh "docker build -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_VERSION} ."
       sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_VERSION}"}    
     }}
+
+  stage('List Pods') {
+    container('k8s-kubectl') {
+      withKubeConfig(clusterName: 'minikube', contextName: 'minikube', credentialsId: 'minikube', serverUrl: 'https://10.0.0.150:8443') {
+      sh 'kubectl get pods'
+      sh 'kubectl get nodes'
+      sh 'ls -lha'}
+  }}
+
 
 }}
 
