@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: "robarros/ronaldo:1.0.0"
+          image: "IMAGE1"
           imagePullPolicy: Always
           ports:
             - name: http
