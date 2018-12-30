@@ -28,17 +28,18 @@ node('devops1') {
 
   stage('Configs') {
     container('bash') {
-      sh returnStdout: true, script: 'sh deploy.sh' 
-      sh "ls -lha"
+      echo 'Alterado as Configuraçoes dos Arquivos do Deploy'
+      sh returnStdout: true, script: 'sh teste.sh' 
+      sh 'cat Deployment.yaml'
       }}
   
   
   stage('Deploy') {
     container('k8s-kubectl') {
+      echo 'Executando o Deploy'
       withKubeConfig(clusterName: 'minikube', contextName: 'minikube', credentialsId: 'minikube', serverUrl: 'https://10.0.0.150:8443') {      
       sh "pwd"
-      sh "ls -lha"
-      sh 'cat Deployment.yaml'
+      sh "ls -lha"      
       }
     }}
 
