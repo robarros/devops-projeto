@@ -53,7 +53,7 @@ node('devops1') {
       try {
         sh "kubectl set image deployment app app=${IMAGE_FULL} --record"}
       catch(Exception e) {
-        sh "kubectl create -f Deployment.yaml"}
+        sh "kubectl create -f Deployment.yaml --record"}
     }}}
 
  }}
