@@ -31,7 +31,6 @@ node('devops1') {
       echo 'Alterado as Configuraçoes dos Arquivos do Deploy'
       sh returnStdout: true, script: 'sh deploy.sh' 
       sh 'cat Deployment.yaml'
-      sh 'ls -lha'
       }}
   
   stage('Package') {
@@ -48,12 +47,11 @@ node('devops1') {
     container('k8s-kubectl') {
       echo 'Executando o Deploy'
       withKubeConfig(clusterName: 'minikube', contextName: 'minikube', credentialsId: 'minikube', serverUrl: 'https://10.0.0.150:8443') {      
-      sh "kubectl get deployment"    
-      sh "kubectl get services"   
       try {
         sh "kubectl set image deployment app app=${IMAGE_FULL} --record"}
       catch(Exception e) {
-        sh "kubectl create -f Deployment.yaml --record"}
+        sh "kubectl create -f Deployment.yaml --record"
+        sh "kubectl create -f Service.yaml --record"}
     }}}
 
  }}
