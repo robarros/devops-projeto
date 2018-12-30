@@ -29,8 +29,9 @@ node('devops1') {
   stage('Configs') {
     container('bash') {
       echo 'Alterado as Configuraçoes dos Arquivos do Deploy'
-      sh returnStdout: true, script: 'sh teste.sh' 
+      sh returnStdout: true, script: 'sh deploy.sh' 
       sh 'cat Deployment.yaml'
+      sh 'ls -lha'
       }}
   
   
