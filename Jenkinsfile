@@ -22,12 +22,12 @@ node('devops1') {
     IMAGE_VERSION = sh returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1`"    
     IMAGE_VERSION = IMAGE_VERSION.trim()
     IMAGE_FULL = "${IMAGE_USER}${IMAGE_NAME}:${IMAGE_VERSION}"
-    sh "echo ${IMAGE_FULL} > IMAGE_FULL.tag "
     }
 
   stage('Configs') {
     container('bash') {
-      echo 'Alterado as Configuraçoes dos Arquivos do Deploy'
+      echo 'Alterado as Configuraçoes dos Arquivos do Deploy'      
+      sh "echo ${IMAGE_FULL} > IMAGE_FULL.tag "
       sh returnStdout: true, script: 'sh deploy.sh' 
       sh 'cat Deployment.yaml'
       }}
