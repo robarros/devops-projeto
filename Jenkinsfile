@@ -14,7 +14,6 @@ def IMAGE_NAME = "app"
 def IMAGE_VERSION
 def IMAGE_FULL
 
-
 node('devops1') {
 
   stage('Checkout') {
