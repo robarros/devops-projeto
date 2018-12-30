@@ -1,1 +1,2 @@
-sed -i.bkp "s/IMAGE1/${IMAGE_FULL}/" Deployment.yaml'
+IMAGEM=$(cat $WORKSPACE/IMAGE_FULL.tag)
+sed -i.bkp "s|IMAGEM1|$IMAGEM|g" $WORKSPACE/Deployment.yaml
