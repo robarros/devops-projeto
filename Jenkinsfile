@@ -47,10 +47,10 @@ node('devops1') {
       echo 'Executando o Deploy'
       withKubeConfig(clusterName: 'minikube', contextName: 'minikube', credentialsId: 'minikube', serverUrl: 'https://10.0.0.150:8443') {      
       try {
-        sh "kubectl set image deployment app app=${IMAGE_FULL} --record"}
+        sh "kubectl set image deployment app app=${IMAGE_FULL} --record=true"}
       catch(Exception e) {
-        sh "kubectl create -f Deployment.yaml --record"
-        sh "kubectl create -f Service.yaml --record"}
+        sh "kubectl create -f Deployment.yaml --record=true"
+        sh "kubectl create -f Service.yaml --record=true"}
     }}}
 
  }}
