@@ -1,9 +1,8 @@
 ---
-hosts: docker
-become: yes
-tasks:
-  - name: ansible create directory example
-    file:
+- hosts: docker
+  remote_user: root
+  tasks:
+   - name: ansible create directory example
+     file:
       path: /tmp/devops_directory
       state: directory
-
