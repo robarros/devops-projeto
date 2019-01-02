@@ -20,7 +20,7 @@ node('devops2') {
   stage('Checkout') {
     echo 'Checkout do repositorio do GitLab'
     checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://gitlab.com/robarros/devops-projeto.git']]])
-    IMAGE_VERSION = sh returnStdout: true, script: "sh $WORKSPACE/scripts/get-tag.sh"    
+    IMAGE_VERSION = sh returnStdout: true, script: "git describe --tags `git rev-list --tags --max-count=1`"    
     IMAGE_VERSION = IMAGE_VERSION.trim()
     IMAGE_FULL = "${IMAGE_USER}${IMAGE_NAME}:${IMAGE_VERSION}"
     }
@@ -29,7 +29,8 @@ node('devops2') {
     container('bash') {
       echo 'Alterado as Configuraçoes dos Arquivos do Deploy'      
       sh "echo ${IMAGE_FULL} > IMAGE_FULL.tag "
-      sh returnStdout: true, script: 'sh $WORKSPACE/scripts/deploy.sh' 
+      sh returnStdout: true, script: 'sh deploy.sh' 
+      sh 'cat Deployment.yaml'
       }}
   
   stage('Package') {
@@ -41,8 +42,8 @@ node('devops2') {
 
     stage('Ansible') {
       container('ansible') {
-        echo 'Criar Pasta'    
-        ansiblePlaybook become: true, credentialsId: 'docker-host', disableHostKeyChecking: true, inventory: 'ansible/hosts', playbook: 'ansible/playbook.yaml'    
+        echo 'criar pasta'    
+        ansiblePlaybook become: true, colorized: true, credentialsId: 'docker-host', disableHostKeyChecking: true, inventory: 'hosts', playbook: 'playbook.yaml'    
     }}
 
   
@@ -53,8 +54,8 @@ node('devops2') {
       try {
         sh "kubectl set image deployment app app=${IMAGE_FULL} --record=true"}
       catch(Exception e) {
-        sh "kubectl create -f $WORKSPACE/kubernetes/Deployment.yaml --record=true"
-        sh "kubectl create -f $WORKSPACE/kubernetes/Service.yaml --record=true"}
+        sh "kubectl create -f Deployment.yaml --record=true"
+        sh "kubectl create -f Service.yaml --record=true"}
     }}}
 
  }}
