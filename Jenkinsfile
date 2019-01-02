@@ -23,6 +23,7 @@ node('devops2') {
     IMAGE_VERSION = sh returnStdout: true, script: "sh $WORKSPACE/scripts/get-tag.sh"    
     IMAGE_VERSION = IMAGE_VERSION.trim()
     IMAGE_FULL = "${IMAGE_USER}${IMAGE_NAME}:${IMAGE_VERSION}"
+    sh "echo ${IMAGE_FULL} > IMAGE_FULL.tag "
     }
 
   stage('Configs') {
