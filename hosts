@@ -1,2 +1,2 @@
 [docker]
-10.0.0.151  ansible_ssh_user=root ansible_ssh_private_key_file=id_rsa.pub
+10.0.0.222
