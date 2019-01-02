@@ -4,5 +4,12 @@
   tasks:
    - name: ansible create directory example
      file:
-      path: /tmp/devops_directory
-      state: directory
+       path: /tmp/devops_directory
+       state: directory
+       mode: 0755
+       recurse: yes
+      
+   - name: create file
+     file:
+        path: /tmp/teste
+        state: touch
