@@ -42,7 +42,8 @@ node('devops2') {
     stage('Ansible') {
       container('ansible') {
         echo 'Criar Pasta'    
-        ansiblePlaybook become: true, credentialsId: 'docker-host', disableHostKeyChecking: true, inventory: '$WORKSPACE/ansible/hosts', playbook: '$WORKSPACE/ansible/playbook.yaml'    
+        ansiblePlaybook become: true, credentialsId: 'docker-host', disableHostKeyChecking: true, inventory: '$WORKSPACE/ansible/hosts', playbook: '$WORKSPACE/ansible/playbook.yaml'
+        sh "echo ${IMAGE_FULL}"
     }}
 
   
