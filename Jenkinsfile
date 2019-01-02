@@ -28,7 +28,7 @@ node('devops2') {
   stage('Configs') {
     container('bash') {
       echo 'Alterado as Configuraçoes dos Arquivos do Deploy'      
-      sh "echo ${IMAGE_FULL} > IMAGE_FULL.tag "
+      sh "echo ${IMAGE_FULL}"
       sh returnStdout: true, script: 'sh $WORKSPACE/scripts/deploy.sh' 
       }}
   
