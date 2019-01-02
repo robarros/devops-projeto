@@ -1,3 +1,5 @@
 #!/bin/bash
-IMAGEM=$(cat $WORKSPACE/IMAGE_FULL.tag)
-sed -i.bkp "s|IMAGEM1|$IMAGEM|g" $WORKSPACE/kubernetes/Deployment.yaml
+
+sed -i.bkp "s|IMAGEM1|${IMAGE_FULL}|g" $WORKSPACE/kubernetes/Deployment.yaml
+
+# //IMAGEM=$(cat $WORKSPACE/IMAGE_FULL.tag)
