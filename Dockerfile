@@ -1,21 +1,6 @@
-FROM python:3-alpine
-
-RUN apk add --virtual .build-dependencies \ 
-            --no-cache \
-            python3-dev \
-            build-base \
-            linux-headers \
-            pcre-dev
-
-RUN apk add --no-cache pcre
-
+FROM python:alpine3.7
+COPY . /app
 WORKDIR /app
-COPY /app /app
-# COPY ./requirements.txt /app
-
-RUN pip install -r /app/requirements.txt
-
-RUN apk del .build-dependencies && rm -rf /var/cache/apk/*
-
+RUN pip install -r requirements.txt
 EXPOSE 5000
-CMD ["uwsgi", "--ini", "/app/wsgi.ini"]
+CMD python ./index.py
