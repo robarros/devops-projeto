@@ -56,8 +56,8 @@ node('devops2') {
       try {
         sh "kubectl set image deployment app app=${IMAGE_FULL} --record=true"}
       catch(Exception e) {
-        sh "kubectl create -f $WORKSPACE/kubernetes/Deployment.yaml --record=true"
-        sh "kubectl create -f $WORKSPACE/kubernetes/Service.yaml --record=true"}
+        sh "kubectl apply -f $WORKSPACE/kubernetes/Deployment.yaml --record=true"
+        sh "kubectl apply -f $WORKSPACE/kubernetes/Service.yaml --record=true"}
     }}}
 
  }}
