@@ -11,5 +11,5 @@
       
    - name: create file
      file:
-        path: /tmp/teste
+        path: /tmp/devops_directory/teste
         state: touch
