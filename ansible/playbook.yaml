@@ -13,11 +13,3 @@
      file:
         path: /tmp/devops_directory/teste
         state: touch
-        
-  - name: Copy a new "ntp.conf file into place, backing up the original if it differs from the copied version
-    copy:
-      src: $WORKSPACE/kubernetes/Deployment.yaml
-      dest: /tmp/devops_directory/Deployment.yaml
-      owner: root
-      group: root
-      mode: 0644
