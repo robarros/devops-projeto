@@ -1,14 +1,15 @@
 FROM python:3-alpine
 
+RUN echo http://mirror.yandex.ru/mirrors/alpine/v3.5/main > /etc/apk/repositories; \
+    echo http://mirror.yandex.ru/mirrors/alpine/v3.5/community >> /etc/apk/repositories
+
 RUN apk add --virtual .build-dependencies \ 
             --no-cache \
             python3-dev \
             build-base \
             linux-headers \
             pcre-dev
-            
-RUN echo http://mirror.yandex.ru/mirrors/alpine/v3.5/main > /etc/apk/repositories; \
-    echo http://mirror.yandex.ru/mirrors/alpine/v3.5/community >> /etc/apk/repositories
+
 
 RUN apk add --no-cache pcre
 
