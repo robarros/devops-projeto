@@ -10,8 +10,8 @@ RUN apk add --virtual .build-dependencies \
 RUN apk add --no-cache pcre
 
 WORKDIR /app
-COPY /app /app
-# COPY ./requirements.txt /app
+
+COPY app /app
 
 RUN pip install -r /app/requirements.txt
 
