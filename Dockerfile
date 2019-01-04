@@ -1,4 +1,4 @@
-FROM python:alpine
+FROM python:3-alpine
 
 RUN apk add --virtual .build-dependencies \ 
             --no-cache \
@@ -22,4 +22,3 @@ EXPOSE 5000
 
 CMD ["uwsgi", "--ini", "/app/wsgi.ini"]
 
-#FROM python:3-alpine
