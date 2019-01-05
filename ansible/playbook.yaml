@@ -16,5 +16,5 @@
 
    - name: copy deployment
      copy:
-        src: $WORKSPACE/kubernetes/Deployment.yaml
+        src: /kubernetes/Deployment.yaml
         dest: /tmp/devops_directory/Deployment.yaml
