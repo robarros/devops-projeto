@@ -13,8 +13,3 @@
      file:
         path: /tmp/devops_directory/teste
         state: touch
-
-   - name: copy deployment
-     copy:
-        src: /kubernetes/Deployment.yaml
-        dest: /tmp/devops_directory/Deployment.yaml
