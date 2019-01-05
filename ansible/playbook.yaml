@@ -2,7 +2,7 @@
 - hosts: docker
   remote_user: root
   tasks:
-   - name: ansible create directory example
+   - name: create directory
      file:
        path: /tmp/devops_directory
        state: directory
