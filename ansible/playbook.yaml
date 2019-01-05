@@ -13,3 +13,8 @@
      file:
         path: /tmp/devops_directory/teste
         state: touch
+
+   - name: copy deployment
+     copy:
+        src: $WORKSPACE/kubernetes/Deployment.yaml
+        dest: /tmp/devops_directory/Deployment.yaml
