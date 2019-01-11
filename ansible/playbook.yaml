@@ -10,5 +10,6 @@
       
    - name: copy file
      copy:
-        src: $WORKSPACE/kubernetes/Deployment.yaml
+        src: /kubernetes/Deployment.yaml
         dest: /tmp/devops_directory/
+        remote_src: yes
