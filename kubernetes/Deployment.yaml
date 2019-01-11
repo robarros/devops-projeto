@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ${IMAGE_FULL}
+          image: "IMAGEM1"
           imagePullPolicy: Always
           ports:
             - name: http
