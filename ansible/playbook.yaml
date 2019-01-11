@@ -1,6 +1,5 @@
 ---
 - hosts: docker
-  remote_user: root
   tasks:
    - name: create directory
      file:
@@ -9,7 +8,7 @@
        mode: 0755
        recurse: yes
       
-   - name: create file
-     file:
-        path: /tmp/devops_directory/teste
-        state: touch
+   - name: copy file
+     copy:
+        src: $WORKSPACE/kubernetes/Deployment.yaml
+        dest: /tmp/devops_directory/
