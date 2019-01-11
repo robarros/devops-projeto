@@ -9,5 +9,5 @@
 
    - name: copy file
      copy:
-        src: /kubernetes/Deployment.yaml
+        src: /$WORKSPACE/kubernetes/Deployment.yaml
         dest: /tmp/devops_directory/
