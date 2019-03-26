@@ -28,7 +28,7 @@ node('devops2') {
 
   stage('Configs') {
     container('bash') {
-      echo 'Alterado as Configuraçoes dos Arquivos do Deploy'      
+      echo 'Alterado as Configuracoes dos Arquivos do Deploy'      
       sh "echo ${IMAGE_FULL}"
       sh returnStdout: true, script: "sh $WORKSPACE/scripts/deploy.sh" 
       sh "cat $WORKSPACE/kubernetes/Deployment.yaml"
