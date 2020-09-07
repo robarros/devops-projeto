@@ -1,6 +1,6 @@
 podTemplate(
     label: 'devops2', 
-    cloud: 'minikube',
+    cloud: 'k8s',
     containers: [
         containerTemplate(name: 'docker', image: 'docker:dind', alwaysPullImage: true, args: 'cat', command: '/bin/sh -c', ttyEnabled: true),
         containerTemplate(name: 'bash', image: 'bash', alwaysPullImage: true, args: 'cat', command: '/bin/sh -c', ttyEnabled: true),
